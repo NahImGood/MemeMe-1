@@ -43,8 +43,7 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         configureTextField(textField: topTextField)
         configureTextField(textField: bottomTextField)
     }
-        
- 
+    
     func configureTextField(textField: UITextField){
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
@@ -97,10 +96,9 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
     func saveMeme(){
         let meme = Meme(topTextField: topTextField.text!, bottomTextField: bottomTextField.text!, originalImage: imageView.image!, memeImage: generateMemedImage())
         
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-            //let appdelegate = object as! AppDelegate
-        appdelegate.memes.append(meme)
-        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
 
     func generateMemedImage() -> UIImage {

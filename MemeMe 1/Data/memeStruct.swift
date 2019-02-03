@@ -8,12 +8,12 @@
 
 import UIKit
 
-struct Meme {
+
+public struct Meme {
     
-    var topTextField: String?
-    var bottomTextField: String?
-    var originalImage: UIImage?
-    var memeImage: UIImage?
-    
+    public var topTextField: String?
+    public var bottomTextField: String?
+    public let originalImage: UIImage?
+    public var memeImage: UIImage?
     
 }
