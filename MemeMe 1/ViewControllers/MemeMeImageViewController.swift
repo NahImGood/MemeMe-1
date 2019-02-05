@@ -103,7 +103,6 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
 
     func generateMemedImage() -> UIImage {
         // Render view to an image
-        print("Tool bar Vanishes")
         topToolBar.isHidden = true
         bottomToolBar.isHidden = true
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -111,7 +110,6 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         navigationController?.setToolbarHidden(true, animated: false)
-        print("Tool bar Returns")
         bottomToolBar.isHidden = false
         topToolBar.isHidden = false
         return memedImage

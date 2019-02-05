@@ -9,11 +9,12 @@
 import UIKit
 
 
-public struct Meme {
+public struct Meme{
     
     public var topTextField: String?
     public var bottomTextField: String?
     public let originalImage: UIImage?
     public var memeImage: UIImage?
     
+ 
 }

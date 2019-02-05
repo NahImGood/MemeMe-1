@@ -17,6 +17,7 @@
 		844B31052204F82300DA710A /* README.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B31042204F82300DA710A /* README.swift */; };
 		844B310B2205315100DA710A /* MemeMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B310A2205315100DA710A /* MemeMeCell.swift */; };
 		848ECDCB21F27B0200431574 /* memeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ECDCA21F27B0200431574 /* memeStruct.swift */; };
+		84C9D1942209222400C2FAB6 /* MemeMeTabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C9D1932209222400C2FAB6 /* MemeMeTabCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		844B31042204F82300DA710A /* README.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		844B310A2205315100DA710A /* MemeMeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeCell.swift; sourceTree = "<group>"; };
 		848ECDCA21F27B0200431574 /* memeStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memeStruct.swift; sourceTree = "<group>"; };
+		84C9D1932209222400C2FAB6 /* MemeMeTabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeTabCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				8423CD3B21EEC019006E5859 /* MemeMeImageViewController.swift */,
 				844B30FB2203D74300DA710A /* MemeCollectionViewController.swift */,
+				84C9D1932209222400C2FAB6 /* MemeMeTabCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C9D1942209222400C2FAB6 /* MemeMeTabCollectionViewCell.swift in Sources */,
 				844B30FC2203D74300DA710A /* MemeCollectionViewController.swift in Sources */,
 				844B310B2205315100DA710A /* MemeMeCell.swift in Sources */,
 				844B31052204F82300DA710A /* README.swift in Sources */,
