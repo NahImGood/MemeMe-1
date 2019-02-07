@@ -1,25 +1,26 @@
 //
-//  MemeMeTabCollectionViewCell.swift
+//  MemeCollectionViewController.swift
 //  MemeMe 1
 //
-//  Created by Eli Warner on 2/4/19.
+//  Created by Eli Warner on 1/31/19.
 //  Copyright © 2019 EGW. All rights reserved.
 //
 
 import UIKit
 
-class MemeMeTabCollectionViewCell: UICollectionViewController {
+class MemeCollectionViewController: UICollectionViewController {
+
     //MARK: Properties
-    var reuseIdentifier = "tabMemeCell"
+    private var reuseIdentifier = "memeCell"
     var memes: [Meme] {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // Do any additional setup after loading the view.
     }
     
@@ -34,6 +35,12 @@ class MemeMeTabCollectionViewCell: UICollectionViewController {
         return memes.count
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeMeDetailVC") as! MemeDetailVC
+        detailViewController.memes = self.memes[(indexPath as NSIndexPath).row]
+        self.navigationController!.pushViewController(detailViewController, animated: true)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeMeCell
         print(indexPath.row)
@@ -43,6 +50,18 @@ class MemeMeTabCollectionViewCell: UICollectionViewController {
         cell.memeImage.image = meme.originalImage
         return cell
         
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionWidth = collectionView.bounds.width
+        return CGSize(width: collectionWidth, height: collectionWidth/2)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 100
     }
     
     func setEmptyMessage(_ message: String) {
@@ -60,4 +79,15 @@ class MemeMeTabCollectionViewCell: UICollectionViewController {
     func restore() {
         collectionView.backgroundView = nil
     }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
