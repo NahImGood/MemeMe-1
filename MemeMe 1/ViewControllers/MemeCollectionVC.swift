@@ -53,9 +53,11 @@ class MemeCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeMeCell
         print(indexPath.row)
         let meme = memes[indexPath.row]
+        cell.memeImage.image = meme.originalImage
         cell.bottomLabel.text = meme.bottomTextField
         cell.topLabel.text = meme.topTextField
-        cell.memeImage.image = meme.originalImage
+        cell.setLabelAttributes(label: cell.topLabel)
+        cell.setLabelAttributes(label: cell.bottomLabel)
         return cell
         
     }
@@ -65,9 +67,11 @@ class MemeCollectionViewController: UICollectionViewController {
         let collectionWidth = collectionView.bounds.width
         return CGSize(width: collectionWidth, height: collectionWidth/2)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 100
     }
