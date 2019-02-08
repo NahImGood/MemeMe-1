@@ -34,11 +34,27 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+
+    
     //MARK: Initilaizer Func
     func initialLoadUI(){
         checkCameraAvailability()
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false
         shareButtonOutlet.isEnabled = false
         configureTextField(textField: topTextField)
         configureTextField(textField: bottomTextField)
@@ -61,6 +77,10 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
     
     @IBAction func cameraButton(_ sender: Any) {
         showImagePicker(source: .camera)
+    }
+    
+    @IBAction func imageViewButton(_ sender: Any) {
+        showImagePicker(source: .photoLibrary)
     }
     
     func showImagePicker(source: UIImagePickerController.SourceType){
@@ -99,6 +119,12 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        afterSave()
+        performSegue(withIdentifier: "tabViewSegue", sender: self)
+    }
+    
+    func afterSave(){
+        
     }
 
     func generateMemedImage() -> UIImage {
@@ -126,19 +152,9 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         }
         present(activityController, animated: true, completion: nil)
     }
+
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        subscribeToKeyboardNotifications()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
-    }
-    
+
     
 }
 

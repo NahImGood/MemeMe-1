@@ -17,7 +17,9 @@ class MemeDetailVC: UIViewController {
     
     override func viewDidLoad() {
         detailImage.image = memes.memeImage
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
     
     
 }
