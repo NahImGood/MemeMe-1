@@ -15,11 +15,4 @@ class MemeDetailVC: UIViewController {
     
     @IBOutlet weak var detailImage: UIImageView!
     
-    override func viewDidLoad() {
-  
-        
-    }
-    
-    
-    
 }
