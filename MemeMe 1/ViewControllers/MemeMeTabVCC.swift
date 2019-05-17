@@ -21,13 +21,6 @@ class MemeMeTabCollectionViewCell: UICollectionViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeMeDetailVC") as! MemeDetailVC
@@ -62,8 +55,8 @@ class MemeMeTabCollectionViewCell: UICollectionViewController {
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height))
         messageLabel.text = message
         messageLabel.textColor = .black
-        messageLabel.numberOfLines = 0;
-        messageLabel.textAlignment = .center;
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
         messageLabel.font = UIFont(name: "Avenir-Light", size: 18)
         messageLabel.sizeToFit()
         

@@ -16,8 +16,8 @@ class MemeDetailVC: UIViewController {
     @IBOutlet weak var detailImage: UIImageView!
     
     override func viewDidLoad() {
-        detailImage.image = memes.memeImage
-        navigationController?.setNavigationBarHidden(false, animated: true)
+  
+        
     }
     
     
