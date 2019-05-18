@@ -37,11 +37,10 @@ and default text.
 
 When the user presses the share button, Apple’s stock Activity View appears, displaying several options for 
 sharing the meme. After an option is chosen, the Activity View is dismissed and the Meme Editor View is visible again.
-
-
+<p float="left">
 <img src="https://user-images.githubusercontent.com/26684339/57973777-e3f8cc80-7962-11e9-9377-a5fe22cb4771.png" width="250">
 <img src="https://user-images.githubusercontent.com/26684339/57973779-e78c5380-7962-11e9-8ccf-d0bc250883ba.png" width="250">
 <img src="https://user-images.githubusercontent.com/26684339/57973780-e78c5380-7962-11e9-9ffa-a8ca1aed96ea.png" width="250">
-
 <img src="https://user-images.githubusercontent.com/26684339/57973781-e78c5380-7962-11e9-9d0b-e231def2bd11.png" width="250">
 <img src="https://user-images.githubusercontent.com/26684339/57973783-e824ea00-7962-11e9-9e11-68bb05a13d56.png" width="250">
+</p>
