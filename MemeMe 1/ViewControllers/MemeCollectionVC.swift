@@ -10,7 +10,7 @@ import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
 
-    //MARK: Properties
+    //MARK: - Properties
     private var reuseIdentifier = "memeCell"
     var memes: [Meme] {
         let object = UIApplication.shared.delegate
@@ -18,6 +18,7 @@ class MemeCollectionViewController: UICollectionViewController {
         return appDelegate.memes
     }
 
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,20 +26,17 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        
-    }
-    
+    //MARK: - CollectionView
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if memes.count == 0 {
+        switch memes.count {
+        case 0:
             setEmptyMessage("There are no Memes at this time! Go Make Some!")
             print("\(memes.count)")
-        } else {
+        default:
             restore()
-            print("\(memes.count)")
+
         }
         return memes.count
     }
@@ -91,15 +89,5 @@ class MemeCollectionViewController: UICollectionViewController {
     func restore() {
         collectionView.backgroundView = nil
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

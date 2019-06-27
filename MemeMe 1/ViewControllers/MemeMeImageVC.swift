@@ -11,13 +11,13 @@ import UIKit
 
 class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    //MARK: Global Variables
+    //MARK: - Variables
     var activeField: UITextField?
 
-    //MARKL: Delegates
+    //MARKL: - Delegates
     let imagePicker = UIImagePickerController()
     
-    //MARK: Outlets
+    //MARK: - Outlets
     @IBOutlet weak var shareButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
@@ -27,13 +27,11 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
     @IBOutlet weak var bottomToolBar: UIToolbar!
     @IBOutlet weak var topToolBar: UIToolbar!
     
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialLoadUI()
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,15 +40,12 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
 
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
     
-
-    
-    //MARK: Initilaizer Func
+    //MARK: - Initilaizer
     func initialLoadUI(){
         checkCameraAvailability()
         imagePicker.delegate = self
@@ -66,11 +61,12 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         textField.textAlignment = .center
     }
 
-    //MARK: Button Actions
+    //MARK: - Button Actions
     @IBAction func shareButtonPressed(_ sender: Any) {
         shareButton()
     }
-
+    
+    //Shows photo library
     @IBAction func photoLibraryButton(_ sender: Any) {
         showImagePicker(source: .photoLibrary)
     }
@@ -83,6 +79,9 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         showImagePicker(source: .photoLibrary)
     }
     
+    
+    
+    //Gives ability to select images from camera roll
     func showImagePicker(source: UIImagePickerController.SourceType){
         if UIImagePickerController.isSourceTypeAvailable(source){
             imagePicker.sourceType = source
@@ -93,10 +92,13 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         }
     }
     
+    //Checks if the device has a front or back camera or one at all
     func checkCameraAvailability(){
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     
+    //When image picker selects media. Images is then placed in the image view on screen
+    //then it can be memed
     func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         if let image = info[.originalImage] as? UIImage{
             imageView.image = image
@@ -106,6 +108,8 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: - Text Attributes
+    //Richtext for meme lettering
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -113,20 +117,33 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         NSAttributedString.Key.strokeWidth: -2.5
     ]
 
+    //MARK: - Save Meme
+    //saves the meme as a Stuct of Meme.
     func saveMeme(){
         let meme = Meme(topTextField: topTextField.text!, bottomTextField: bottomTextField.text!, originalImage: imageView.image!, memeImage: generateMemedImage())
         
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
-        afterSave()
         performSegue(withIdentifier: "tabViewSegue", sender: self)
     }
     
-    func afterSave(){
-        
+    //Share button located in the top left.
+    //Takes the memed image and gives you the ability to save or share it.
+    func shareButton(){
+        let memedImage = generateMemedImage()
+        let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        activityController.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                self.saveMeme()
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        present(activityController, animated: true, completion: nil)
     }
 
+    //MARK: - Create Meme Image
+    //Creates the meme image with the new text into the image. Returns the created meme
     func generateMemedImage() -> UIImage {
         // Render view to an image
         topToolBar.isHidden = true
@@ -140,21 +157,5 @@ class MemeMeImageViewController: UIViewController,UIImagePickerControllerDelegat
         topToolBar.isHidden = false
         return memedImage
     }
-    
-    func shareButton(){
-        let memedImage = generateMemedImage()
-        let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        activityController.completionWithItemsHandler = { activity, success, items, error in
-            if success {
-                self.saveMeme()
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
-        present(activityController, animated: true, completion: nil)
-    }
-
-    
-
-    
 }
 
